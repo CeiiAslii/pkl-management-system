@@ -1,9 +1,13 @@
 # 🎓 E-PKL
 
-## Sistem Manajemen Praktik Kerja Lapangan
+### Sistem Manajemen Praktik Kerja Lapangan
+
+📍 Selfie + GPS · 📝 Laporan Harian · 🩺 Izin/Sakit · 🤖 Telegram · 📊 Rekap Excel · 🔐 Multi-Role
 
 [![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.3%2B-777BB4?logo=php&logoColor=white)](https://www.php.net)
+[![MariaDB](https://img.shields.io/badge/MariaDB-MySQL-003545?logo=mariadb&logoColor=white)](https://mariadb.org)
+[![Security](https://img.shields.io/badge/security-policy-0F766E)](SECURITY.md)
 [![Tests](https://img.shields.io/badge/tests-PHPUnit-3C9CD7?logo=php&logoColor=white)](tests)
 
 ## 📖 About
@@ -62,3 +66,7 @@ See the complete [installation guide](INSTALLATION.md) for environment requireme
 ## 📷 Screenshots
 
 Screenshots will be added in a future documentation update.
+
+---
+
+**E-PKL — Sistem Manajemen Praktik Kerja Lapangan**
