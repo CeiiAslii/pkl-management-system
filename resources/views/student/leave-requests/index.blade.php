@@ -1,0 +1,10 @@
+<x-student-layout title="Izin / Sakit">
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-sm text-slate-500">Pantau status pengajuan izin atau sakit Anda.</p>
+        <a href="{{ route('student.leave-requests.create') }}" class="rounded-lg bg-sky-700 px-4 py-2.5 text-sm font-bold text-white hover:bg-sky-800">Buat pengajuan</a>
+    </div>
+    <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="overflow-x-auto"><table class="min-w-full divide-y divide-slate-200 text-left text-sm"><thead class="bg-slate-50 text-xs uppercase text-slate-500"><tr><th class="px-5 py-4">Tanggal</th><th class="px-5 py-4">Jenis</th><th class="px-5 py-4">Alasan</th><th class="px-5 py-4">Status</th><th class="px-5 py-4">Lampiran</th></tr></thead><tbody class="divide-y divide-slate-100">@forelse($leaveRequests as $leaveRequest)<tr><td class="whitespace-nowrap px-5 py-4 font-semibold text-slate-900">{{ $leaveRequest->requested_for->translatedFormat('d M Y') }}</td><td class="px-5 py-4 capitalize text-slate-700">{{ $leaveRequest->type }}</td><td class="max-w-lg px-5 py-4 text-slate-600">{{ str($leaveRequest->reason)->limit(140) }}</td><td class="px-5 py-4"><span @class(['rounded-full px-2.5 py-1 text-xs font-semibold', 'bg-amber-100 text-amber-800' => $leaveRequest->status === 'pending', 'bg-emerald-100 text-emerald-800' => $leaveRequest->status === 'approved', 'bg-rose-100 text-rose-800' => $leaveRequest->status === 'rejected'])>{{ ['pending' => 'Menunggu', 'approved' => 'Disetujui', 'rejected' => 'Ditolak'][$leaveRequest->status] }}</span></td><td class="px-5 py-4">@if($leaveRequest->supporting_file_path)<a href="{{ route('student.leave-requests.file', $leaveRequest) }}" class="font-semibold text-sky-700 hover:text-sky-900">Lihat file</a>@else<span class="text-slate-400">Tidak ada</span>@endif</td></tr>@empty<tr><td colspan="5" class="px-5 py-12 text-center text-slate-500">Belum ada pengajuan izin atau sakit.</td></tr>@endforelse</tbody></table></div>
+    </section>
+    <div class="mt-5">{{ $leaveRequests->links() }}</div>
+</x-student-layout>

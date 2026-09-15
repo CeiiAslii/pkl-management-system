@@ -1,0 +1,13 @@
+<x-student-layout title="Riwayat">
+    <div class="grid gap-6 xl:grid-cols-2">
+        <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <div class="flex items-center justify-between gap-3"><h2 class="text-lg font-bold text-slate-900">Laporan harian terbaru</h2><a href="{{ route('student.daily-reports.index') }}" class="text-sm font-semibold text-sky-700">Lihat semua</a></div>
+            <div class="mt-4 divide-y divide-slate-100">@forelse($dailyReports as $dailyReport)<article class="py-4 first:pt-0"><p class="text-sm font-semibold text-slate-900">{{ $dailyReport->report_date->translatedFormat('d M Y') }}</p><p class="mt-1 text-sm leading-6 text-slate-600">{{ str($dailyReport->activity_description)->limit(180) }}</p></article>@empty<p class="py-6 text-sm text-slate-500">Belum ada laporan harian.</p>@endforelse</div>
+        </section>
+        <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <div class="flex items-center justify-between gap-3"><h2 class="text-lg font-bold text-slate-900">Izin / sakit terbaru</h2><a href="{{ route('student.leave-requests.index') }}" class="text-sm font-semibold text-sky-700">Lihat semua</a></div>
+            <div class="mt-4 divide-y divide-slate-100">@forelse($leaveRequests as $leaveRequest)<article class="py-4 first:pt-0"><div class="flex items-center justify-between gap-3"><p class="text-sm font-semibold text-slate-900">{{ ucfirst($leaveRequest->type) }} · {{ $leaveRequest->requested_for->translatedFormat('d M Y') }}</p><span class="text-xs font-semibold text-slate-500">{{ ['pending' => 'Menunggu', 'approved' => 'Disetujui', 'rejected' => 'Ditolak'][$leaveRequest->status] }}</span></div><p class="mt-1 text-sm leading-6 text-slate-600">{{ str($leaveRequest->reason)->limit(180) }}</p></article>@empty<p class="py-6 text-sm text-slate-500">Belum ada pengajuan izin atau sakit.</p>@endforelse</div>
+        </section>
+    </div>
+    <section class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"><p class="text-sm font-semibold text-sky-700">Riwayat absensi</p><div class="mt-3 divide-y divide-slate-100">@forelse ($attendances as $attendance)<article class="grid gap-2 py-3 text-sm first:pt-0 sm:grid-cols-3"><p class="font-semibold text-slate-900">{{ $attendance->attendance_date->translatedFormat('d M Y') }}</p><p class="text-slate-600">Masuk: {{ $attendance->check_in_at->format('H:i') }}</p><p class="text-slate-600">Pulang: {{ $attendance->check_out_at?->format('H:i') ?? '—' }}</p></article>@empty<p class="py-5 text-sm text-slate-500">Belum ada riwayat absensi.</p>@endforelse</div></section>
+</x-student-layout>
